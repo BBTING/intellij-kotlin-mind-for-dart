@@ -1,0 +1,44 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+plugins {
+    id "org.jetbrains.kotlin.jvm"
+    id 'org.jetbrains.intellij'
+}
+
+apply plugin: 'java'
+apply plugin: "idea"
+apply plugin: "kotlin"
+apply plugin: "org.jetbrains.intellij"
+
+repositories {
+    mavenCentral()
+}
+
+intellij {
+    pluginName name
+
+    instrumentCode = false
+    version ideaVersion
+    type "IU"
+    downloadSources Boolean.valueOf(downloadIdeaSources)
+    updateSinceUntilBuild = false
+
+    sandboxDirectory project.rootDir.canonicalPath + "/.sandbox"
+    plugins "org.jetbrains.kotlin:$kotlinVersion-$kotlinRelease", "Dart:$dartVersion", "properties", "junit",
+            "java", "gradle", "android", "Groovy", "smali", "IntelliLang"
+}
+
+tasks.withType(KotlinCompile) {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
+}
+
+//publishPlugin {
+//    def authenticationToken = "$System.env.token"
+//    token authenticationToken
+//    channels publishChannels
+//}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    testImplementation 'junit:junit:4.11'
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
+}

@@ -1,0 +1,34 @@
+<idea-plugin>
+    <id>com.oboenikui.idea_plugin.flutter_wrap_widget</id>
+    <name>Flutter Wrap Widget</name>
+    <version>1.0.0</version>
+    <vendor email="oboenikuitwitter@gmail.com" url="https://github.com/oboenikui">oboenikui</vendor>
+
+    <description>Generate a template to wrap a Flutter widget in another widget.</description>
+
+    <change-notes>
+        <![CDATA[
+    <head>1.0.0:</head>
+    <ul>
+      <li>Initial release of the plugin.</li>
+    </ul>
+    ]]></change-notes>
+
+    <idea-version since-build="192.7142" until-build="193.*"/>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.lang</depends>
+    <depends>Dart</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <codeInsight.template.postfixTemplateProvider
+                language="Dart"
+                implementationClass="com.oboenikui.idea_plugin.flutter_wrap_widget.postfix.DartPostfixTemplateProvider"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+
+</idea-plugin>
